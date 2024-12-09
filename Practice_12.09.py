@@ -43,8 +43,7 @@ def max_interval(A,l,r):
             right_sum = current_sum
     M += (left_sum + right_sum)
     return max(L, R, M)
-
-
+    
 
 A = [-41, 77, -12, -4, 2, 31,-11, -2]
 B = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
