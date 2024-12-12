@@ -28,18 +28,20 @@ def max_interval(A,l,r):
     m = (l+r)//2
     L = max_interval(A,l,m)
     R = max_interval(A,m+1,r)
-    #M계산
-    #for반복문
-    left_sum = 0
-    left_max = float('-inf')
-    for i in range(m,l-1,-1):
+    
+    # M 계산 수정
+    left_sum = A[m]  # A[m]으로 시작
+    left_max = left_sum  # 초기값을 left_sum으로 설정
+    for i in range(m-1,l-1,-1):
         left_sum += A[i]
         left_max = max(left_max,left_sum)
-    right_sum = 0
-    right_max = float('-inf')
-    for i in range(m+1,r+1):
+        
+    right_sum = A[m+1]  # A[m+1]로 시작
+    right_max = right_sum  # 초기값을 right_sum으로 설정
+    for i in range(m+2,r+1):
         right_sum += A[i]
         right_max = max(right_max,right_sum)
+    
     M = left_max + right_max
     return max(L,R,M)
     
