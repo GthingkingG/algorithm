@@ -24,25 +24,24 @@ def prefix_sum(A):
     return max_sum
 
 def max_interval(A,l,r):
-    if l>=r : return A[l]
-    m = (l + r)//2
+    if l >= r : return A[l]
+    m = (l+r)//2
     L = max_interval(A,l,m)
     R = max_interval(A,m+1,r)
-    M = A[m] + A[m+1]
+    #M계산
+    #for반복문
     left_sum = 0
+    left_max = float('-inf')
+    for i in range(m,l-1,-1):
+        left_sum += A[i]
+        left_max = max(left_max,left_sum)
     right_sum = 0
-    current_sum = 0
-    for i in range(m-1,-1,-1):
-        current_sum += A[i]
-        if left_sum < current_sum:
-            left_sum = current_sum
-    current_sum = 0
-    for j in range(m+2, len(A)):
-        current_sum += A[j]
-        if right_sum < current_sum:
-            right_sum = current_sum
-    M += (left_sum + right_sum)
-    return max(L, R, M)
+    right_max = float('-inf')
+    for i in range(m+1,r+1):
+        right_sum += A[i]
+        right_max = max(right_max,right_sum)
+    M = left_max + right_max
+    return max(L,R,M)
     
 
 A = [-41, 77, -12, -4, 2, 31,-11, -2]
